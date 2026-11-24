@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: malaria-classifier
+    runtime: docker
+    plan: free            # free tier has 512 MB RAM: prediction works, retraining may need a paid plan
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /_stcore/health
+    envVars:
+      - key: RETRAIN_THRESHOLD
+        value: "50"
+      - key: BATCH_SIZE
+        value: "16"

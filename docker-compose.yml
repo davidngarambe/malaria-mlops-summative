@@ -1,0 +1,22 @@
+# Scale the model service and load-balance it behind nginx:
+#   docker compose up --build --scale app=1 -d
+#   docker compose up --build --scale app=2 -d
+#   docker compose up --build --scale app=4 -d
+# API (load balanced): http://localhost:8080   (Locust target)
+services:
+  app:
+    build: .
+    expose:
+      - "8000"
+      - "8501"
+    environment:
+      - RETRAIN_THRESHOLD=50
+
+  nginx:
+    image: nginx:1.27-alpine
+    volumes:
+      - ./deploy/nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "8080:80"
+    depends_on:
+      - app
