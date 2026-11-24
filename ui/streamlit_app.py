@@ -102,8 +102,13 @@ elif page == "Predict":
         left.image(f, caption=f.name, width=220)
         if right.button("Predict", type="primary"):
             t0 = time.time()
-            r = requests.post(f"{API_URL}/predict",
-                              files={"file": (f.name, f.getvalue(), f.type)}, timeout=60)
+            try:
+                with st.spinner("Predicting... the first request can take a minute while the model loads"):
+                    r = requests.post(f"{API_URL}/predict",
+                                      files={"file": (f.name, f.getvalue(), f.type)}, timeout=180)
+            except Exception as e:
+                right.error(f"Could not reach the API: {e}")
+                st.stop()
             latency = (time.time() - t0) * 1000
             if r.ok:
                 res = r.json()
