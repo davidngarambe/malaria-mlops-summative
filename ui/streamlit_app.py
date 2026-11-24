@@ -15,6 +15,19 @@ API_URL = os.getenv("API_URL", "http://localhost:8000").rstrip("/")
 
 st.set_page_config(page_title="Malaria Cell Classifier", page_icon="🦟", layout="wide")
 
+# Hide Streamlit's top-right "three dots" menu and the "Deploy" button
+st.markdown(
+    """
+    <style>
+    #MainMenu {visibility: hidden;}
+    [data-testid="stMainMenu"] {display: none;}
+    [data-testid="stToolbar"] {display: none;}
+    [data-testid="stAppDeployButton"] {display: none;}
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 
 def api_get(path, **kw):
     r = requests.get(f"{API_URL}{path}", timeout=kw.pop("timeout", 30), **kw)
