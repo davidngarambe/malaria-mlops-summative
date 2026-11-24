@@ -4,6 +4,7 @@ Run:  uvicorn src.api:app --host 0.0.0.0 --port 8000   (docs at /docs)
 """
 import base64
 import io
+import threading
 import time
 import uuid
 from typing import List
@@ -22,6 +23,18 @@ app = FastAPI(title="Malaria Cell Classifier API", version="1.0")
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
 
 START_TIME = time.time()
+
+
+@app.on_event("startup")
+def warm_up_model():
+    """Load the model in the background at startup so the first prediction is fast."""
+    def _load():
+        try:
+            prediction.get_model()
+        except Exception as e:
+            print("Model warm-up failed:", e)
+    threading.Thread(target=_load, daemon=True).start()
+
 _stats = {"predictions": 0, "errors": 0}
 _features_cache = {"df": None}
 
