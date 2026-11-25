@@ -4,10 +4,8 @@ An image-classification system that decides whether a microscope image of a sing
 
 ## Links
 
-- 🎥 **Video demo (YouTube):** PASTE_YOUR_YOUTUBE_LINK_HERE
-- 💻 **GitHub repo:** https://github.com/davidngarambe/malaria-mlops-summative
-- 🌐 **Render deployment:** https://malaria-mlops-summative.onrender.com
-  - Note: Render's free tier has only 512 MB of RAM. The dashboard loads there, but TensorFlow does not fit in that memory, so prediction and retraining do not run on the free instance. The complete app (prediction, bulk upload, retraining) is shown in the video and runs from the Docker image described below.
+-  **Video demo (YouTube):** PASTE_YOUR_YOUTUBE_LINK_HERE
+-  **GitHub repo:** https://github.com/davidngarambe/malaria-mlops-summative
 
 ## Project description
 
