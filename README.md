@@ -133,6 +133,5 @@ locust -f locust/locustfile.py --host http://localhost:8080 --headless -u 50 -r 
 
 ## Known limitations
 
-- Render's free tier (512 MB) cannot run TensorFlow, so the full app is run with Docker or Colab.
 - The repository holds only a small sample of the dataset, so retraining inside the demo is for showing the pipeline, not for improving accuracy.
 - The flood-test results with different container counts are not included.
