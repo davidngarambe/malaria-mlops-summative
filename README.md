@@ -4,7 +4,7 @@ An image-classification system that decides whether a microscope image of a sing
 
 ## Links
 
--  **Video demo (YouTube):** PASTE_YOUR_YOUTUBE_LINK_HERE
+-  **Video demo (YouTube):** https://youtu.be/6Xqf0ALhmqk
 -  **GitHub repo:** https://github.com/davidngarambe/malaria-mlops-summative
 
 ## Project description
